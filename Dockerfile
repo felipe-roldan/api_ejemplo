@@ -8,9 +8,11 @@ RUN python3 get-pip.py
 COPY requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-WORKDIR /app
-COPY app.py /app/
+WORKDIR /ms
+COPY app /ms/app
+COPY main.py /ms/
+COPY setup.py /ms/
 
 EXPOSE 8105
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8105"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8105"]
